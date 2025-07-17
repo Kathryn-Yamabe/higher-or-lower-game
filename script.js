@@ -7,11 +7,17 @@ let score = 0;
 const urlParams = new URLSearchParams(window.location.search);
 const theme = urlParams.get('theme') || 'hospital-costs';
 
+// Convert theme to a readable prompt
+function formatPrompt(themeName) {
+    return "Which has higher " + themeName.replace(/[-_]/g, ' ') + "?";
+}
+
 // Load data from JSON file
 fetch(`data/${theme}.json`)
     .then(response => response.json())
     .then(json => {
         data = json;
+        document.getElementById("prompt").textContent = formatPrompt(theme);
         nextRound();
     })
     .catch(error => {
@@ -32,9 +38,10 @@ function nextRound() {
 
     document.getElementById("item-a-name").textContent = currentPair[0].name;
     document.getElementById("item-b-name").textContent = currentPair[1].name;
+
     document.getElementById("button-a").textContent = currentPair[0].name;
     document.getElementById("button-b").textContent = currentPair[1].name;
-    document.getElementById("comparison-line").textContent = `${currentPair[0].name} vs ${currentPair[1].name}`;
+
     document.getElementById("result").textContent = "";
 }
 
