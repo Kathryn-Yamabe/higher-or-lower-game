@@ -1,10 +1,14 @@
 [
-  { "name": "USA", "value": 18000 },
-  { "name": "India", "value": 300 },
-  { "name": "Germany", "value": 5000 },
-  { "name": "Canada", "value": 7000 },
-  { "name": "UK", "value": 6000 },
-  { "name": "Australia", "value": 8000 },
-  { "name": "Japan", "value": 4000 },
-  { "name": "Brazil", "value": 1200 }
+  { "name": "USA", "value": 10348 },
+  { "name": "Switzerland", "value": 7919 },
+  { "name": "Germany", "value": 5551 },
+  { "name": "Canada", "value": 4753 },
+  { "name": "UK", "value": 4192 },
+  { "name": "Australia", "value": 4708 },
+  { "name": "Japan", "value": 4519 },
+  { "name": "Sweden", "value": 5488 }
+  { "name": "Netherlands", "value": 5385 }
+  { "name": "Austria", "value": 5227 }
+  { "name": "Belgium", "value": 4840 }
+  { "name": "France", "value": 4600 }
 ]
