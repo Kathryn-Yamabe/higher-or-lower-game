@@ -8,9 +8,10 @@
 <body>
     <h1>Higher or Lower</h1>
     <div id="game">
-        <p>Current Number: <span id="current-number">?</span></p>
-        <button onclick="makeGuess('higher')">Higher</button>
-        <button onclick="makeGuess('lower')">Lower</button>
+        <p id="prompt">Which is more expensive?</p>
+        <p><span id="item-a">Item A</span> vs <span id="item-b">Item B</span></p>
+        <button onclick="makeGuess('a')">A</button>
+        <button onclick="makeGuess('b')">B</button>
         <p id="result"></p>
         <p>Score: <span id="score">0</span></p>
     </div>
