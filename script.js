@@ -42,6 +42,7 @@ function nextRound() {
     document.getElementById("button-b").textContent = currentPair[1].name;
 
     document.getElementById("result").textContent = "";
+    document.getElementById("play-again").style.display = "none";
 }
 
 function makeGuess(choice) {
@@ -59,11 +60,11 @@ function makeGuess(choice) {
         score++;
         document.getElementById("result").textContent = "Correct!";
         document.getElementById("score").textContent = score;
-        setTimeout(nextRound, 1000); // Delay so user can see result
+        setTimeout(nextRound, 1000);
     } else {
         document.getElementById("result").textContent = `Wrong! ${a.name}: ${a.value}, ${b.name}: ${b.value}`;
         document.getElementById("score").textContent = 0;
         score = 0;
-        setTimeout(nextRound, 2000); // Delay so user can see result
+        document.getElementById("play-again").style.display = "inline-block";
     }
 }
