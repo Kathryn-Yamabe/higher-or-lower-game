@@ -1,4 +1,3 @@
-
 let data = [];
 let currentPair = [];
 let score = 0;
@@ -7,7 +6,7 @@ let score = 0;
 const urlParams = new URLSearchParams(window.location.search);
 const theme = urlParams.get('theme') || 'hospital-costs';
 
-// Format theme name for display
+// Convert theme to readable format for prompt
 function formatThemeName(theme) {
     return theme.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
@@ -59,11 +58,12 @@ function makeGuess(choice) {
     if (correct) {
         score++;
         document.getElementById("result").textContent = "Correct!";
+        document.getElementById("score").textContent = score;
+        setTimeout(nextRound, 1000); // Delay so user can see result
     } else {
-        score = 0;
         document.getElementById("result").textContent = `Wrong! ${a.name}: ${a.value}, ${b.name}: ${b.value}`;
+        document.getElementById("score").textContent = 0;
+        score = 0;
+        setTimeout(nextRound, 2000); // Delay so user can see result
     }
-
-    document.getElementById("score").textContent = score;
-    nextRound();
 }
