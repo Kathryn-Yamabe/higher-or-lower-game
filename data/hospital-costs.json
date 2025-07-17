@@ -1,0 +1,10 @@
+[
+  { "name": "USA", "value": 18000 },
+  { "name": "India", "value": 300 },
+  { "name": "Germany", "value": 5000 },
+  { "name": "Canada", "value": 7000 },
+  { "name": "UK", "value": 6000 },
+  { "name": "Australia", "value": 8000 },
+  { "name": "Japan", "value": 4000 },
+  { "name": "Brazil", "value": 1200 }
+]
