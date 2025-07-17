@@ -2,9 +2,11 @@ let data = [];
 let currentPair = [];
 let score = 0;
 
+// Get theme from URL
 const urlParams = new URLSearchParams(window.location.search);
 const theme = urlParams.get('theme') || 'hospital-costs';
 
+// Load data from JSON file
 fetch(`data/${theme}.json`)
     .then(response => response.json())
     .then(json => {
@@ -29,10 +31,6 @@ function nextRound() {
 
     document.getElementById("item-a-name").textContent = currentPair[0].name;
     document.getElementById("item-b-name").textContent = currentPair[1].name;
-
-    document.querySelector("button[data-choice='a']").textContent = currentPair[0].name;
-    document.querySelector("button[data-choice='b']").textContent = currentPair[1].name;
-
     document.getElementById("result").textContent = "";
 }
 
