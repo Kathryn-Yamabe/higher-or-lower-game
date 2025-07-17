@@ -1,3 +1,4 @@
+
 let data = [];
 let currentPair = [];
 let score = 0;
@@ -14,7 +15,7 @@ fetch(`data/${theme}.json`)
         nextRound();
     })
     .catch(error => {
-        document.getElementById("prompt").textContent = "Error loading data.";
+        document.getElementById("prompt").textContent = "Failed to load theme data.";
         console.error("Error loading theme data:", error);
     });
 
@@ -29,8 +30,14 @@ function nextRound() {
 
     currentPair = [data[indexA], data[indexB]];
 
-    document.getElementById("item-a-name").textContent = currentPair[0].name;
-    document.getElementById("item-b-name").textContent = currentPair[1].name;
+    const nameA = currentPair[0].name;
+    const nameB = currentPair[1].name;
+
+    document.getElementById("item-a-name").textContent = nameA;
+    document.getElementById("item-b-name").textContent = nameB;
+    document.getElementById("comparison-line").textContent = `${nameA} vs ${nameB}`;
+    document.getElementById("button-a").textContent = nameA;
+    document.getElementById("button-b").textContent = nameB;
     document.getElementById("result").textContent = "";
 }
 
