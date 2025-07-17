@@ -1,4 +1,3 @@
-
 let data = [];
 let currentPair = [];
 let score = 0;
@@ -7,7 +6,7 @@ let score = 0;
 const urlParams = new URLSearchParams(window.location.search);
 const theme = urlParams.get('theme') || 'hospital-costs';
 
-// Load data from the corresponding JSON file
+// Load data from JSON file
 fetch(`data/${theme}.json`)
     .then(response => response.json())
     .then(json => {
@@ -15,14 +14,13 @@ fetch(`data/${theme}.json`)
         nextRound();
     })
     .catch(error => {
-        document.getElementById("prompt").textContent = "Failed to load theme data.";
-        console.error("Error loading data:", error);
+        document.getElementById("prompt").textContent = "Error loading data.";
+        console.error("Error loading theme data:", error);
     });
 
 function nextRound() {
     if (data.length < 2) return;
 
-    // Randomly select two different items
     let indexA = Math.floor(Math.random() * data.length);
     let indexB;
     do {
@@ -31,8 +29,8 @@ function nextRound() {
 
     currentPair = [data[indexA], data[indexB]];
 
-    document.getElementById("item-a").textContent = currentPair[0].name;
-    document.getElementById("item-b").textContent = currentPair[1].name;
+    document.getElementById("item-a-name").textContent = currentPair[0].name;
+    document.getElementById("item-b-name").textContent = currentPair[1].name;
     document.getElementById("result").textContent = "";
 }
 
