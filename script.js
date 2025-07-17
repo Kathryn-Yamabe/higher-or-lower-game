@@ -1,48 +1,46 @@
+
 let data = [];
 let currentPair = [];
 let score = 0;
 
-function getThemeFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('theme') || 'hospital-costs';
-}
+// Get theme from URL
+const urlParams = new URLSearchParams(window.location.search);
+const theme = urlParams.get('theme') || 'hospital-costs';
 
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1)];
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
-function loadData(theme) {
-    fetch(`data/${theme}.json`)
-        .then(response => response.json())
-        .then(json => {
-            data = json;
-            shuffle(data);
-            nextRound();
-        })
-        .catch(error => {
-            document.getElementById("prompt").textContent = "Failed to load data.";
-            console.error("Error loading data:", error);
-        });
-}
+// Load data from the corresponding JSON file
+fetch(`data/${theme}.json`)
+    .then(response => response.json())
+    .then(json => {
+        data = json;
+        nextRound();
+    })
+    .catch(error => {
+        document.getElementById("prompt").textContent = "Failed to load theme data.";
+        console.error("Error loading data:", error);
+    });
 
 function nextRound() {
-    if (data.length < 2) {
-        document.getElementById("prompt").textContent = "Not enough data to continue.";
-        return;
-    }
-    currentPair = data.splice(0, 2);
+    if (data.length < 2) return;
+
+    // Randomly select two different items
+    let indexA = Math.floor(Math.random() * data.length);
+    let indexB;
+    do {
+        indexB = Math.floor(Math.random() * data.length);
+    } while (indexB === indexA);
+
+    currentPair = [data[indexA], data[indexB]];
+
     document.getElementById("item-a").textContent = currentPair[0].name;
     document.getElementById("item-b").textContent = currentPair[1].name;
+    document.getElementById("result").textContent = "";
 }
 
 function makeGuess(choice) {
     const a = currentPair[0];
     const b = currentPair[1];
-    let correct = false;
 
+    let correct = false;
     if (choice === 'a' && a.value >= b.value) {
         correct = true;
     } else if (choice === 'b' && b.value >= a.value) {
@@ -60,6 +58,3 @@ function makeGuess(choice) {
     document.getElementById("score").textContent = score;
     nextRound();
 }
-
-const theme = getThemeFromURL();
-loadData(theme);
